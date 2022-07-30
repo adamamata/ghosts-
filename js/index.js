@@ -9,6 +9,7 @@ window.onload = () => {
 const splashScreen = document.querySelector('#splash-screen');
 const gameBoard = document.querySelector('#game-board');
 
+
 //gameArea Object
 const gameArea = {
     canvas: document.createElement('canvas'),
