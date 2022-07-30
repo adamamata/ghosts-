@@ -12,8 +12,19 @@ body {
     align-items: center;
 }
 
-#splash-screen > img {
+#titleDiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 5vw;
+}
+
+#title{
     width: 35vw;
+}
+
+.ghostBackground {
+    height: 20vh;
 }
 
 #self-advert img {
@@ -37,12 +48,17 @@ ul {
     background-color: #262626;
     margin-top: 25px;
     border-radius: 50px;
+    border: none;
 }
 
 #start-button:hover{
     background-color: white;
     color: black;
     cursor:grab;
+}
+
+.link:hover {
+    filter: blur(2px)
 }
 
 canvas {
