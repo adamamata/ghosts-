@@ -5,16 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ghosts!</title>
-    <link rel="stylesheet" href="/styles/reset.css">
-    <link rel="stylesheet" href="/styles/style.css">
+    <link rel="stylesheet" href="./styles/reset.css">
+    <link rel="stylesheet" href="./styles/style.css">
 </head>
 <body>
     <div id="splash-screen">
         <div id="titleDiv">
-            <img id="title" src="/assets/images/title.png">
-            <img class="ghostBackground" src="/assets/images/ghost-background2.png">
+            <img id="title" src="./assets/images/title.png">
+            <img class="ghostBackground" src="./assets/images/ghost-background2.png">
         </div>
-        
         <ul>
             <li>Don't let the ghosts hit the ground.</li>
             <li>Move with the <u>arrow keys.</u></li>
@@ -22,13 +21,14 @@
             <li>You have <u>3 lives.</u></li>
         </ul>
         <button id="start-button">START</button>
+        <audio class='button-sound' src="./assets/music/button.wav"></audio>
         <div id="self-advert">
-            <a class ='link' href="https://www.linkedin.com/in/adam-amatavivadhana-2ab955199/"><img src="/assets/images/linkedin.png"></a>
-            <a class ='link' href="https://github.com/adamamata"><img src="/assets/images/github.png"></a>
+            <a class ='link' href="https://www.linkedin.com/in/adam-amatavivadhana-2ab955199/"><img src="./assets/images/linkedin.png"></a>
+            <a class ='link' href="https://github.com/adamamata"><img src="./assets/images/github.png"></a>
         </div>
     </div>
     <div id="game-board"></div>
     <div id="end-screen"></div>  
-    <script type="text/javascript" src="/js/index.js"></script>
+    <script type="text/javascript" src="./js/index.js"></script>
 </body>
 </html>

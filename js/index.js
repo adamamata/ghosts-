@@ -1,12 +1,23 @@
-const splashScreen = document.querySelector('#splash-screen');
-const gameBoard = document.querySelector('#game-board');
-
-window.onload = () => {
-    document.getElementById('start-button').onclick = () => {
+//Window onload 
+window.onload = () => {   
+    startButton.onclick = () => {
         gameArea.start();
     }
 }
 
+//splash-screen button audio
+const startButton = document.getElementById('start-button');
+const soundArr = document.getElementsByTagName('audio');
+startButton.addEventListener('mouseenter', () => {
+    soundArr[0].play();
+});
+
+
+//query selectors 
+const splashScreen = document.querySelector('#splash-screen');
+const gameBoard = document.querySelector('#game-board');
+
+//gameArea Object
 const gameArea = {
     canvas: document.createElement('canvas'),
     frame: 0,
