@@ -126,6 +126,7 @@ document.addEventListener('keydown', (e) => { //Event listener to control player
             }
             break;
         case 32:  //spacebar 
+            soundArr[1].volume = 0.2;
             soundArr[1].play();
             player1.img = playerAttack;
             setTimeout(function(){
