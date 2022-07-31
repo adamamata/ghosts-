@@ -11,19 +11,19 @@ const gameBoard = document.querySelector('#game-board');
 
 //Images 
 const background = new Image();
-background.src ='/assets/images/background.jpg';
+background.src ='./assets/images/background.jpg';
 const cloud = new Image();
-cloud.src = '/assets/images/cloud.png';
+cloud.src = './assets/images/cloud.png';
 const playerImg = new Image();
-playerImg.src = '/assets/images/player.png';
+playerImg.src = './assets/images/player.png';
 const playerRight = new Image();
-playerRight.src = '/assets/images/Running/run-right.png';
+playerRight.src = './assets/images/Running/run-right.png';
 const playerLeft = new Image();
-playerLeft.src = '/assets/images/Running/run-left.png';
+playerLeft.src = './assets/images/Running/run-left.png';
 const playerAttack = new Image();
-playerAttack.src = '/assets/images/attack.png';
+playerAttack.src = './assets/images/attack.png';
 const playerAttack2 = new Image();
-playerAttack2.src = '/assets/images/attack2.png';
+playerAttack2.src = './assets/images/attack2.png';
 
 //gameArea Object
 const gameArea = {
