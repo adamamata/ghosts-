@@ -61,6 +61,17 @@ ul {
     filter: blur(2px)
 }
 
+#game-board {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+}
+
+#game-board > img {
+    width: 30vw;
+}
+
 canvas {
     border: 5px solid black;
 }
