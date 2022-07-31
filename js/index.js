@@ -53,6 +53,6 @@ function animateClouds(){
     const ctx = gameArea.context;
     ctx.drawImage(cloud, cloud1X, cloud1Y, 300, 250);
     ctx.drawImage(cloud, cloud2X, cloud2Y, 200, 150);
-    cloud1X >= -200 ? cloud1X -= 1 : cloud1X = 1000; 
-    cloud2X >= -200 ? cloud2X -= 1 : cloud2X = 1500;
+    cloud1X >= -300 ? cloud1X-- : cloud1X = 1000; 
+    cloud2X >= -200 ? cloud2X-- : cloud2X = 1000;
 }
