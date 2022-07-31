@@ -16,6 +16,12 @@ const cloud = new Image();
 cloud.src = '/assets/images/cloud.png';
 const playerImg = new Image();
 playerImg.src = '/assets/images/player.png';
+const playerRight = new Image();
+playerRight.src = '/assets/images/Running/run-right.png';
+const playerLeft = new Image();
+playerLeft.src = '/assets/images/Running/run-left.png';
+const playerAttack = new Image();
+playerAttack.src = '/assets/images/attack.png';
 
 //gameArea Object
 const gameArea = {
@@ -81,12 +87,31 @@ document.addEventListener('keydown', (e) => { //Event listener to control player
         case 39:
             if (player1.x < 900){
                 player1.x += 20;
+                player1.img = playerRight;
             }
             break;
         case 37:
             if (player1.x > -40){
                 player1.x -= 20;
+                player1.img = playerLeft;
             }
             break;
+        case 32:
+            player1.img = playerAttack;
+            break;
     }
-})
+});
+
+document.addEventListener('keyup', (e) => { //reseting player1.img after keyup 
+    switch (e.keyCode){
+        case 39:
+            player1.img = playerImg;
+            break;
+        case 37:
+            player1.img = playerImg;
+            break;
+        case 32:
+            player1.img = playerImg;
+            break;
+    }
+});
