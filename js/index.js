@@ -10,20 +10,22 @@ const splashScreen = document.querySelector('#splash-screen');
 const gameBoard = document.querySelector('#game-board');
 
 //Images 
-const background = new Image();
+const background = new Image(); //Background image
 background.src ='./assets/images/background.jpg';
-const cloud = new Image();
+const cloud = new Image(); //cloud image
 cloud.src = './assets/images/cloud.png';
-const playerImg = new Image();
+const playerImg = new Image(); //player image
 playerImg.src = './assets/images/player.png';
-const playerRight = new Image();
+const playerRight = new Image(); //player right image
 playerRight.src = './assets/images/Running/run-right.png';
-const playerLeft = new Image();
+const playerLeft = new Image(); //player left image
 playerLeft.src = './assets/images/Running/run-left.png';
-const playerAttack = new Image();
+const playerAttack = new Image(); //player attack image 1
 playerAttack.src = './assets/images/attack.png';
-const playerAttack2 = new Image();
+const playerAttack2 = new Image(); //player attack image 2
 playerAttack2.src = './assets/images/attack2.png';
+const ghostImg = new Image(); //ghost image 
+ghostImg.src = './assets/images/ghost.png'
 
 //gameArea Object
 const gameArea = {
@@ -53,6 +55,7 @@ function updateGame(){
     gameArea.clear();
     animateClouds();
     player1.updatePos();
+    ghosts();
 }
 
 //animate clouds function 
@@ -68,21 +71,39 @@ function animateClouds(){
     cloud2X >= -200 ? cloud2X-- : cloud2X = 1000;
 }
 
+//ghosts function
+let ghostX = Math.floor(Math.random() * 1000);
+let ghostY = -100;
+const ghostsArr = [];
+function ghosts(){
+    const ctx = gameArea.context;
+    gameArea.frames++; 
+    if (gameArea.frames % 120 === 0){
+        ghostsArr.push(new gameElement(ghostImg, ghostX, ghostY, 100, 100));
+    }
+    for (let i = 0; i < ghostsArr.length; i++){
+        ghostsArr[i].y += 2;
+        ghostsArr[i].updatePos();
+        ghostX = Math.floor(Math.random() * 1000);
+    }
+}
+
 //Class for player 
-class Player {
+class gameElement {
     constructor (img, x, y, w, h){
         this.img = img;
         this.x = x;
         this.y = y;
         this.w = w;
         this.h = h;
+        this.alive = true;
     }
     updatePos(){
         gameArea.context.drawImage(this.img, this.x, this.y, this.w, this.h); //updating position method 
     }
 }
 
-const player1 = new Player(playerImg, 440, 350, 150, 150); //Creating Player1 
+const player1 = new gameElement(playerImg, 440, 350, 150, 150); //Creating Player1 
 
 document.addEventListener('keydown', (e) => { //Event listener to control player
     switch (e.keyCode){
