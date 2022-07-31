@@ -12,27 +12,47 @@ const gameBoard = document.querySelector('#game-board');
 //Images 
 const background = new Image();
 background.src ='/assets/images/background.jpg';
+const cloud = new Image();
+cloud.src = '/assets/images/cloud.png';
 
 //gameArea Object
 const gameArea = {
-    canvas: document.createElement('canvas'),
-    frame: 0,
+    canvas: document.createElement('canvas'), //creating canvas element
+    frames: 0,
     start: function(){
         splashScreen.style.display = 'none';
         gameBoard.style.display = 'flex';
         this.canvas.width = 1000;
         this.canvas.height = 500;
-        this.context = this.canvas.getContext('2d'); 
+        this.context = this.canvas.getContext('2d'); //initializing canvas 
         gameBoard.insertBefore(this.canvas, gameBoard.childNodes[1]); // appending this.canvas to gameBoard
-        this.interval = setInterval(update, 20); //update game area every 20ms 
-        this.context.drawImage(background, 0, 0, this.canvas.width, this.canvas.height);
+        this.interval = setInterval(updateGame, 20); //update game area every 20ms 
+        
     },
-    stop: function(){
+    stop: function(){ //stops the game 
         clearInterval(this.interval);
+    },
+    clear: function(){ //Clears the game area and draws the background 
+        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        this.context.drawImage(background, 0, 0, this.canvas.width, this.canvas.height);
     }
 }
 
 //update function
-function update(){
-    
+function updateGame(){
+    gameArea.clear();
+    animateClouds();
+}
+
+//animate clouds function 
+let cloud1X = 1000;
+let cloud1Y = -60;
+let cloud2X = 1500; 
+let cloud2Y = 40;
+function animateClouds(){
+    const ctx = gameArea.context;
+    ctx.drawImage(cloud, cloud1X, cloud1Y, 300, 250);
+    ctx.drawImage(cloud, cloud2X, cloud2Y, 200, 150);
+    cloud1X >= -200 ? cloud1X -= 1 : cloud1X = 1000; 
+    cloud2X >= -200 ? cloud2X -= 1 : cloud2X = 1500;
 }
