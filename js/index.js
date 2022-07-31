@@ -14,6 +14,8 @@ const background = new Image();
 background.src ='/assets/images/background.jpg';
 const cloud = new Image();
 cloud.src = '/assets/images/cloud.png';
+const playerImg = new Image();
+playerImg.src = '/assets/images/player.png';
 
 //gameArea Object
 const gameArea = {
@@ -42,6 +44,7 @@ const gameArea = {
 function updateGame(){
     gameArea.clear();
     animateClouds();
+    player1.updatePos();
 }
 
 //animate clouds function 
@@ -56,3 +59,34 @@ function animateClouds(){
     cloud1X >= -300 ? cloud1X-- : cloud1X = 1000; 
     cloud2X >= -200 ? cloud2X-- : cloud2X = 1000;
 }
+
+//Class for player 
+class Player {
+    constructor (img, x, y, w, h){
+        this.img = img;
+        this.x = x;
+        this.y = y;
+        this.w = w;
+        this.h = h;
+    }
+    updatePos(){
+        gameArea.context.drawImage(this.img, this.x, this.y, this.w, this.h); //updating position method 
+    }
+}
+
+const player1 = new Player(playerImg, 440, 350, 150, 150); //Creating Player1 
+
+document.addEventListener('keydown', (e) => { //Event listener to control player
+    switch (e.keyCode){
+        case 39:
+            if (player1.x < 900){
+                player1.x += 20;
+            }
+            break;
+        case 37:
+            if (player1.x > -40){
+                player1.x -= 20;
+            }
+            break;
+    }
+})
