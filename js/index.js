@@ -72,17 +72,17 @@ function animateClouds(){
 }
 
 //ghosts function
-let ghostX = Math.floor(Math.random() * 1000);
-let ghostY = -100;
-const ghostsArr = [];
+let ghostX = Math.floor(Math.random() * 1000); //random x coordinate 
+let ghostY = -100; //y coordinate outside of canvas 
+const ghostsArr = []; //empty array for ghosts
 function ghosts(){
     const ctx = gameArea.context;
     gameArea.frames++; 
-    if (gameArea.frames % 120 === 0){
-        ghostsArr.push(new gameElement(ghostImg, ghostX, ghostY, 100, 100));
+    if (gameArea.frames % 100 === 0){ //every 100 frames
+        ghostsArr.push(new gameElement(ghostImg, ghostX, ghostY, 100, 100)); //push a new ghost into ghost array
     }
-    for (let i = 0; i < ghostsArr.length; i++){
-        ghostsArr[i].y += 2;
+    for (let i = 0; i < ghostsArr.length; i++){ 
+        ghostsArr[i].y += 2; //update position of ghost 
         ghostsArr[i].updatePos();
         ghostX = Math.floor(Math.random() * 1000);
     }

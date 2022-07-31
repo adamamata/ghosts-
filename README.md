@@ -1,7 +1,7 @@
 Ghosts!
 
 Description:
-Ghosts! is a game where a player has to deflect incoming ghosts (that falls from the top of the screen). If a ghost touches the ground, the player loses a life. For every ghost deflected, the player gains a point.
+Ghosts! is a game where a player has to eat incoming ghosts (that fall from the top of the screen). If a ghost touches the ground, the player loses a life. For every ghost eaten, the player gains a point.
 
 MVP: 
 1. Falling objects (random x coordinates generated)
