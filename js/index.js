@@ -26,6 +26,8 @@ const playerAttack2 = new Image(); //player attack image 2
 playerAttack2.src = './assets/images/attack2.png';
 const ghostImg = new Image(); //ghost image 
 ghostImg.src = './assets/images/ghost.png'
+const ghostImg2 = new Image();
+ghostImg2.src = './assets/images/ghost1.png';
 
 //gameArea Object
 const gameArea = {
@@ -73,6 +75,7 @@ function animateClouds(){
 
 //ghosts function
 let ghostX = Math.floor(Math.random() * 1000); //random x coordinate 
+let ghost2X = Math.floor(Math.random() * 1000);
 let ghostY = -100; //y coordinate outside of canvas 
 const ghostsArr = []; //empty array for ghosts
 function ghosts(){
@@ -80,6 +83,9 @@ function ghosts(){
     gameArea.frames++; 
     if (gameArea.frames % 100 === 0){ //every 100 frames
         ghostsArr.push(new gameElement(ghostImg, ghostX, ghostY, 100, 100)); //push a new ghost into ghost array
+    }
+    if (gameArea.frames % 250 === 0) { //every 250 frames 
+        ghostsArr.push(new gameElement(ghostImg2, ghost2X, ghostY, 120, 120)); //push second ghost into ghost array 
     }
     for (let i = 0; i < ghostsArr.length; i++){ 
         ghostsArr[i].y += 2; //update position of ghost 
