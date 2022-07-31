@@ -45,7 +45,7 @@ const gameArea = {
     clear: function(){ //Clears the game area and draws the background 
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.context.drawImage(background, 0, 0, this.canvas.width, this.canvas.height);
-    }
+    },
 }
 
 //update function
@@ -99,6 +99,7 @@ document.addEventListener('keydown', (e) => { //Event listener to control player
             }
             break;
         case 32:  //spacebar 
+            soundArr[1].play();
             player1.img = playerAttack;
             setTimeout(function(){
                 player1.img = playerAttack2;

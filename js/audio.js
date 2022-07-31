@@ -5,7 +5,7 @@ startButton.addEventListener('mouseenter', () => {
     soundArr[0].play();
 });
 startButton.addEventListener('click', () => {
-    soundArr[1].play();
+    soundArr[0].play();
     soundArr[2].play();
     soundArr[2].setAttribute('controls', "");
     soundArr[2].setAttribute('loop', "");
@@ -13,10 +13,10 @@ startButton.addEventListener('click', () => {
 });
 muteButton.addEventListener('click', () => {
     if (soundArr[2].paused){
-        muteButton.innerText = 'MUTE';
+        muteButton.innerText = 'MUTE MUSIC';
         soundArr[2].play()
     } else {
-        muteButton.innerText = 'UNMUTE';
+        muteButton.innerText = 'UNMUTE MUSIC';
         soundArr[2].pause();
     }
 });
