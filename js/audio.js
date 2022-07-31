@@ -1,4 +1,3 @@
-//splash-screen button audio
 const startButton = document.getElementById('start-button');
 const soundArr = document.getElementsByTagName('audio');
 const muteButton = document.getElementById('mute-button');
