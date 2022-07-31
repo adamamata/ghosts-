@@ -22,6 +22,8 @@ const playerLeft = new Image();
 playerLeft.src = '/assets/images/Running/run-left.png';
 const playerAttack = new Image();
 playerAttack.src = '/assets/images/attack.png';
+const playerAttack2 = new Image();
+playerAttack2.src = '/assets/images/attack2.png';
 
 //gameArea Object
 const gameArea = {
@@ -84,33 +86,36 @@ const player1 = new Player(playerImg, 440, 350, 150, 150); //Creating Player1
 
 document.addEventListener('keydown', (e) => { //Event listener to control player
     switch (e.keyCode){
-        case 39:
+        case 39: //right arrow
             if (player1.x < 900){
                 player1.x += 20;
                 player1.img = playerRight;
             }
             break;
-        case 37:
+        case 37: //left arrow
             if (player1.x > -40){
                 player1.x -= 20;
                 player1.img = playerLeft;
             }
             break;
-        case 32:
+        case 32:  //spacebar 
             player1.img = playerAttack;
+            setTimeout(function(){
+                player1.img = playerAttack2;
+            }, 50)
             break;
     }
 });
 
 document.addEventListener('keyup', (e) => { //reseting player1.img after keyup 
     switch (e.keyCode){
-        case 39:
+        case 39: //right arrow 
             player1.img = playerImg;
             break;
-        case 37:
+        case 37: //left arrow
             player1.img = playerImg;
             break;
-        case 32:
+        case 32: //spacebar
             player1.img = playerImg;
             break;
     }
