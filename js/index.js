@@ -23,7 +23,7 @@ const gameArea = {
         this.canvas.width = 1000;
         this.canvas.height = 500;
         this.context = this.canvas.getContext('2d'); 
-        gameBoard.appendChild(this.canvas); // appending this.canvas to gameBoard
+        gameBoard.insertBefore(this.canvas, gameBoard.childNodes[1]); // appending this.canvas to gameBoard
         this.interval = setInterval(update, 20); //update game area every 20ms 
         this.context.drawImage(background, 0, 0, this.canvas.width, this.canvas.height);
     },
