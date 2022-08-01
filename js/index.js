@@ -18,8 +18,12 @@ const playerImg = new Image(); //player image
 playerImg.src = './assets/images/player.png';
 const playerRight = new Image(); //player right image
 playerRight.src = './assets/images/Running/run-right.png';
+const playerRight2 = new Image();
+playerRight2.src = './assets/images/Running/run-right2.png';
 const playerLeft = new Image(); //player left image
 playerLeft.src = './assets/images/Running/run-left.png';
+const playerLeft2 = new Image();
+playerLeft2.src = './assets/images/Running/run-left2.png';
 const playerAttack = new Image(); //player attack image 1
 playerAttack.src = './assets/images/attack.png';
 const playerAttack2 = new Image(); //player attack image 2
@@ -117,12 +121,18 @@ document.addEventListener('keydown', (e) => { //Event listener to control player
             if (player1.x < 900){
                 player1.x += 20;
                 player1.img = playerRight;
+                setTimeout(function(){
+                    player1.img = playerRight2;
+                }, 50);
             }
             break;
         case 37: //left arrow
             if (player1.x > -40){
                 player1.x -= 20;
                 player1.img = playerLeft;
+                setTimeout(function(){
+                    player1.img = playerLeft2;
+                }, 50);
             }
             break;
         case 32:  //spacebar 
