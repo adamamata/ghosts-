@@ -124,6 +124,9 @@ document.addEventListener('keydown', (e) => { //Event listener to control player
                 setTimeout(function(){
                     player1.img = playerRight2;
                 }, 50);
+                setTimeout(function(){
+                    player1.img = playerImg;
+                }, 100);
             }
             break;
         case 37: //left arrow
