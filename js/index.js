@@ -8,6 +8,7 @@ window.onload = () => {
 //query selectors 
 const splashScreen = document.querySelector('#splash-screen');
 const gameBoard = document.querySelector('#game-board');
+const endScreen = document.querySelector('#end-screen');
 
 //Images 
 const background = new Image(); //Background image
@@ -32,15 +33,23 @@ const ghostImg = new Image(); //ghost image
 ghostImg.src = './assets/images/ghost.png'
 const ghostImg2 = new Image();
 ghostImg2.src = './assets/images/ghost1.png';
+const hearts3 = new Image();//hearts
+hearts3.src = './assets/images/Hearts/3.png'; 
+const hearts2 = new Image();
+hearts2.src = './assets/images/Hearts/2.png';
+const hearts1 = new Image();
+hearts1.src = './assets/images/Hearts/1.png';
 
 //gameArea Object
 const gameArea = {
     canvas: document.createElement('canvas'), //creating canvas element
     frames: 0,
     score: 0,
+    lives: 3,
     start: function(){
         splashScreen.style.display = 'none';
         gameBoard.style.display = 'flex';
+        endScreen.style.display = 'none';
         this.canvas.width = 1000;
         this.canvas.height = 500;
         this.context = this.canvas.getContext('2d'); //initializing canvas 
@@ -50,6 +59,8 @@ const gameArea = {
     },
     stop: function(){ //stops the game 
         clearInterval(this.interval);
+        gameBoard.style.display = 'none';
+        endScreen.style.display = 'flex';
     },
     clear: function(){ //Clears the game area and draws the background 
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -64,6 +75,22 @@ function updateGame(){
     player1.updatePos();
     ghosts();
     keepScore();
+    lives();
+}
+
+//lives function 
+function lives(){
+    console.log(gameArea.lives);
+    const ctx = gameArea.context;
+    if (gameArea.lives === 3){
+        ctx.drawImage(hearts3, 858, -30, 150, 150);
+    } else if (gameArea.lives === 2){
+        ctx.drawImage(hearts2, 860, -30, 85, 150);
+    } else if (gameArea.lives === 1){
+        ctx.drawImage(hearts1, 860, -30, 60, 150);
+    } else {
+        gameArea.stop();
+    }
 }
 
 //keep score function
@@ -111,6 +138,10 @@ function ghosts(){
                 gameArea.score++;
             }
         });
+        if (ghostsArr[i].y > 500){ //if ghost touches leaves frame -> delete from array and -1 from lives 
+            ghostsArr.splice([i], 1);
+            gameArea.lives--;
+        }
     }
 }
 
