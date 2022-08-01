@@ -45,11 +45,7 @@ const gameArea = {
     }
 }
 
-
 //function to get rid of ghosts 
-function clearGhosts(){
-    ghostsArr = [];
-}
 
 //update function
 function updateGame(){
@@ -125,7 +121,7 @@ function ghosts(){
             ghostsArr.push(new gameElement(hellGhost1, ghostX, ghostY, 100, 100)); 
         }
         if (gameArea.frames % 150 === 0) { 
-            ghostsArr.push(new gameElement(hellGhost2, ghost2X, ghostY, 120, 120)); 
+            ghostsArr.push(new gameElement(hellGhost1, ghost2X, ghostY, 120, 120)); 
         }        
     }
     for (let i = 0; i < ghostsArr.length; i++){ 
