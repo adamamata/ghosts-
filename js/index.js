@@ -37,6 +37,7 @@ ghostImg2.src = './assets/images/ghost1.png';
 const gameArea = {
     canvas: document.createElement('canvas'), //creating canvas element
     frames: 0,
+    score: 0,
     start: function(){
         splashScreen.style.display = 'none';
         gameBoard.style.display = 'flex';
@@ -62,6 +63,15 @@ function updateGame(){
     animateClouds();
     player1.updatePos();
     ghosts();
+    keepScore();
+}
+
+//keep score function
+function keepScore(){
+    const ctx = gameArea.context;
+    ctx.font = '18px Arial';
+    ctx.fillStyle = 'white';
+    ctx.fillText(`Score: ${gameArea.score}`, 900, 20);
 }
 
 //animate clouds function 
@@ -85,19 +95,20 @@ const ghostsArr = []; //empty array for ghosts
 function ghosts(){
     const ctx = gameArea.context;
     gameArea.frames++; 
-    if (gameArea.frames % 100 === 0){ //every 100 frames
+    if (gameArea.frames % 75 === 0){ //every 75 frames
         ghostsArr.push(new gameElement(ghostImg, ghostX, ghostY, 100, 100)); //push a new ghost into ghost array
     }
-    if (gameArea.frames % 350 === 0) { //every 350 frames 
+    if (gameArea.frames % 250 === 0) { //every 250 frames 
         ghostsArr.push(new gameElement(ghostImg2, ghost2X, ghostY, 120, 120)); //push second ghost into ghost array 
     }
     for (let i = 0; i < ghostsArr.length; i++){ 
-        ghostsArr[i].y += 2; //update position of ghost 
+        ghostsArr[i].y += 4; //update position of ghost 
         ghostsArr[i].updatePos();
         ghostX = Math.floor(Math.random() * 1000);
         document.addEventListener('keypress', (e) => { //deleting ghostsArr[i] with spacebar 
             if (player1.checkIfNear(ghostsArr[i]) && e.keyCode === 32){ //if player is near the ghost and spacebar is pressed
                 ghostsArr.splice([i], 1);
+                gameArea.score++;
             }
         });
     }
@@ -111,7 +122,6 @@ class gameElement {
         this.y = y;
         this.w = w;
         this.h = h;
-        this.alive = true;
     }
     updatePos(){
         gameArea.context.drawImage(this.img, this.x, this.y, this.w, this.h); //updating position method 
