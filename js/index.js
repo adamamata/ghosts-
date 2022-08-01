@@ -58,7 +58,6 @@ function updateGame(){
 
 //lives function 
 function lives(){
-    console.log(gameArea.lives);
     const ctx = gameArea.context;
     if (gameArea.lives === 3){
         ctx.drawImage(hearts3, 858, -30, 150, 150);
