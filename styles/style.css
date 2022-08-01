@@ -64,8 +64,9 @@ ul {
 #game-board {
     display: none;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
-    padding: 10px;
+    height: 100vh;
 }
 
 #game-board > img {
