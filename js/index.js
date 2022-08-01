@@ -100,11 +100,27 @@ const ghostsArr = []; //empty array for ghosts
 function ghosts(){
     const ctx = gameArea.context;
     gameArea.frames++; 
-    if (gameArea.frames % 75 === 0){ //every 75 frames
-        ghostsArr.push(new gameElement(ghostImg, ghostX, ghostY, 100, 100)); //push a new ghost into ghost array
-    }
-    if (gameArea.frames % 250 === 0) { //every 250 frames 
-        ghostsArr.push(new gameElement(ghostImg2, ghost2X, ghostY, 120, 120)); //push second ghost into ghost array 
+    if (gameArea.score < 10){ //this conditional makes the game harder after score = 10
+        if (gameArea.frames % 75 === 0){ 
+            ghostsArr.push(new gameElement(ghostImg, ghostX, ghostY, 100, 100)); //push a new ghost into ghost array
+        }
+        if (gameArea.frames % 250 === 0) { 
+            ghostsArr.push(new gameElement(ghostImg2, ghost2X, ghostY, 120, 120)); //push second ghost into ghost array 
+        }
+    } else if (gameArea.score < 20){ //this conditional makes the game harder after score = 20
+        if (gameArea.frames % 60 === 0){ 
+            ghostsArr.push(new gameElement(ghostImg, ghostX, ghostY, 100, 100)); 
+        }
+        if (gameArea.frames % 200 === 0) { 
+            ghostsArr.push(new gameElement(ghostImg2, ghost2X, ghostY, 120, 120)); 
+        }        
+    } else {
+        if (gameArea.frames % 50 === 0){ 
+            ghostsArr.push(new gameElement(ghostImg, ghostX, ghostY, 100, 100)); 
+        }
+        if (gameArea.frames % 150 === 0) { 
+            ghostsArr.push(new gameElement(ghostImg2, ghost2X, ghostY, 120, 120)); 
+        }        
     }
     for (let i = 0; i < ghostsArr.length; i++){ 
         ghostsArr[i].y += 4; //update position of ghost 
