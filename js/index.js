@@ -10,36 +10,6 @@ const splashScreen = document.querySelector('#splash-screen');
 const gameBoard = document.querySelector('#game-board');
 const endScreen = document.querySelector('#end-screen');
 
-//Images 
-const background = new Image(); //Background image
-background.src ='./assets/images/background.jpg';
-const cloud = new Image(); //cloud image
-cloud.src = './assets/images/cloud.png';
-const playerImg = new Image(); //player image
-playerImg.src = './assets/images/player.png';
-const playerRight = new Image(); //player right image
-playerRight.src = './assets/images/Running/run-right.png';
-const playerRight2 = new Image();
-playerRight2.src = './assets/images/Running/run-right2.png';
-const playerLeft = new Image(); //player left image
-playerLeft.src = './assets/images/Running/run-left.png';
-const playerLeft2 = new Image();
-playerLeft2.src = './assets/images/Running/run-left2.png';
-const playerAttack = new Image(); //player attack image 1
-playerAttack.src = './assets/images/attack.png';
-const playerAttack2 = new Image(); //player attack image 2
-playerAttack2.src = './assets/images/attack2.png';
-const ghostImg = new Image(); //ghost image 
-ghostImg.src = './assets/images/ghost.png'
-const ghostImg2 = new Image();
-ghostImg2.src = './assets/images/ghost1.png';
-const hearts3 = new Image();//hearts
-hearts3.src = './assets/images/Hearts/3.png'; 
-const hearts2 = new Image();
-hearts2.src = './assets/images/Hearts/2.png';
-const hearts1 = new Image();
-hearts1.src = './assets/images/Hearts/1.png';
-
 //gameArea Object
 const gameArea = {
     canvas: document.createElement('canvas'), //creating canvas element
