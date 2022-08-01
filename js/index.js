@@ -45,8 +45,6 @@ const gameArea = {
     }
 }
 
-//function to get rid of ghosts 
-
 //update function
 function updateGame(){
     gameArea.clear();
