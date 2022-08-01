@@ -1,16 +1,10 @@
-//Window onload 
-window.onload = () => {   
-    startButton.onclick = () => {
-        gameArea.start();
-    }
-}
-
 //query selectors 
 const splashScreen = document.querySelector('#splash-screen');
 const gameBoard = document.querySelector('#game-board');
 const endScreen = document.querySelector('#end-screen');
 const restartButton = document.querySelector('#restart-button');
 const scoreText = document.querySelector('#score');
+const gameOverRestart = document.querySelector('#game-over-restart');
 
 //gameArea Object
 const gameArea = {
@@ -44,6 +38,12 @@ const gameArea = {
         this.score = 0;
         this.lives = 3;
     }
+}
+
+
+//function to get rid of ghosts 
+function clearGhosts(){
+    ghostsArr = [];
 }
 
 //update function
@@ -169,55 +169,3 @@ class gameElement {
 }
 
 const player1 = new gameElement(playerImg, 440, 350, 150, 150); //Creating Player1 
-
-document.addEventListener('keydown', (e) => { //Event listener to control player
-    switch (e.keyCode){
-        case 39: //right arrow
-            if (player1.x < 900){
-                player1.x += 20;
-                player1.img = playerRight;
-                setTimeout(function(){
-                    player1.img = playerRight2;
-                }, 50);
-                setTimeout(function(){
-                    player1.img = playerImg;
-                }, 100);
-            }
-            break;
-        case 37: //left arrow
-            if (player1.x > -40){
-                player1.x -= 20;
-                player1.img = playerLeft;
-                setTimeout(function(){
-                    player1.img = playerLeft2;
-                }, 50);
-            }
-            break;
-        case 32:  //spacebar 
-            soundArr[1].volume = 0.2;
-            soundArr[1].play();
-            player1.img = playerAttack;
-            setTimeout(function(){
-                player1.img = playerAttack2;
-            }, 50)
-            break;
-    }
-});
-
-document.addEventListener('keyup', (e) => { //reseting player1.img after keyup 
-    switch (e.keyCode){
-        case 39: //right arrow 
-            player1.img = playerImg;
-            break;
-        case 37: //left arrow
-            player1.img = playerImg;
-            break;
-        case 32: //spacebar
-            player1.img = playerImg;
-            break;
-    }
-});
-
-restartButton.addEventListener('click', () => {
-    gameArea.restart();
-})

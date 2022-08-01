@@ -109,3 +109,9 @@ canvas {
 #score {
     font-size: 50px;
 }
+
+#game-over-restart{
+    margin: 50px;
+    height: 5vh;
+    width: 20vw;
+}
