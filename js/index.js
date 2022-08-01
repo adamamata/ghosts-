@@ -53,7 +53,7 @@ const gameArea = {
     clear: function(){ //Clears the game area and draws the background 
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.context.drawImage(background, 0, 0, this.canvas.width, this.canvas.height);
-    },
+    }
 }
 
 //update function
@@ -88,17 +88,22 @@ function ghosts(){
     if (gameArea.frames % 100 === 0){ //every 100 frames
         ghostsArr.push(new gameElement(ghostImg, ghostX, ghostY, 100, 100)); //push a new ghost into ghost array
     }
-    if (gameArea.frames % 250 === 0) { //every 250 frames 
+    if (gameArea.frames % 350 === 0) { //every 350 frames 
         ghostsArr.push(new gameElement(ghostImg2, ghost2X, ghostY, 120, 120)); //push second ghost into ghost array 
     }
     for (let i = 0; i < ghostsArr.length; i++){ 
         ghostsArr[i].y += 2; //update position of ghost 
         ghostsArr[i].updatePos();
         ghostX = Math.floor(Math.random() * 1000);
+        document.addEventListener('keypress', (e) => { //deleting ghostsArr[i] with spacebar 
+            if (player1.checkIfNear(ghostsArr[i]) && e.keyCode === 32){ //if player is near the ghost and spacebar is pressed
+                ghostsArr.splice([i], 1);
+            }
+        });
     }
 }
 
-//Class for player 
+//game element class 
 class gameElement {
     constructor (img, x, y, w, h){
         this.img = img;
@@ -110,6 +115,22 @@ class gameElement {
     }
     updatePos(){
         gameArea.context.drawImage(this.img, this.x, this.y, this.w, this.h); //updating position method 
+    }
+    //Methods to return current position of game element 
+    left(){
+        return this.x;
+    }
+    right(){
+        return this.x + this.w;
+    }
+    top(){
+        return this.y;
+    }
+    bottom(){
+        return this.y + this.h;
+    }
+    checkIfNear(element){ //logic to check if player is near an element (ghost)
+        return (this.top() <= element.bottom() && this.bottom() >= element.top() && this.left() <= element.right() && this.right() >= element.left());
     }
 }
 
