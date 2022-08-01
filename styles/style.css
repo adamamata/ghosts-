@@ -92,3 +92,19 @@ ul {
 canvas {
     border: 5px solid black;
 }
+
+#end-screen {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+}
+
+#game-over{
+    width: 50vw;
+}
+
+#score {
+    font-size: 50px;
+}

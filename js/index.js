@@ -9,6 +9,8 @@ window.onload = () => {
 const splashScreen = document.querySelector('#splash-screen');
 const gameBoard = document.querySelector('#game-board');
 const endScreen = document.querySelector('#end-screen');
+const restartButton = document.querySelector('#restart-button');
+const scoreText = document.querySelector('#score');
 
 //gameArea Object
 const gameArea = {
@@ -31,10 +33,16 @@ const gameArea = {
         clearInterval(this.interval);
         gameBoard.style.display = 'none';
         endScreen.style.display = 'flex';
+        scoreText.innerText = `Score: ${this.score}`;
     },
     clear: function(){ //Clears the game area and draws the background 
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.context.drawImage(background, 0, 0, this.canvas.width, this.canvas.height);
+    },
+    restart: function(){
+        this.frames = 0;
+        this.score = 0;
+        this.lives = 3;
     }
 }
 
@@ -194,3 +202,7 @@ document.addEventListener('keyup', (e) => { //reseting player1.img after keyup
             break;
     }
 });
+
+restartButton.addEventListener('click', () => {
+    gameArea.restart();
+})
