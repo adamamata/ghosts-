@@ -31,7 +31,12 @@ const gameArea = {
     },
     clear: function(){ //Clears the game area and draws the background 
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        this.context.drawImage(background, 0, 0, this.canvas.width, this.canvas.height);
+        if (this.score < 20) {
+            this.context.drawImage(background, 0, 0, this.canvas.width, this.canvas.height);
+        } else {
+            this.context.drawImage(hellBackground, 0, 0, this.canvas.width, this.canvas.height);
+        }
+       
     },
     restart: function(){
         this.frames = 0;
@@ -85,10 +90,12 @@ let cloud2X = 1500;
 let cloud2Y = 40;
 function animateClouds(){
     const ctx = gameArea.context;
-    ctx.drawImage(cloud, cloud1X, cloud1Y, 300, 250);
-    ctx.drawImage(cloud, cloud2X, cloud2Y, 200, 150);
-    cloud1X >= -300 ? cloud1X-- : cloud1X = 1000; 
-    cloud2X >= -200 ? cloud2X-- : cloud2X = 1000;
+    if (gameArea.score < 20){
+        ctx.drawImage(cloud, cloud1X, cloud1Y, 300, 250);
+        ctx.drawImage(cloud, cloud2X, cloud2Y, 200, 150);
+        cloud1X >= -300 ? cloud1X-- : cloud1X = 1000; 
+        cloud2X >= -200 ? cloud2X-- : cloud2X = 1000;        
+    }
 }
 
 //ghosts function
@@ -115,10 +122,10 @@ function ghosts(){
         }        
     } else {
         if (gameArea.frames % 50 === 0){ 
-            ghostsArr.push(new gameElement(ghostImg, ghostX, ghostY, 100, 100)); 
+            ghostsArr.push(new gameElement(hellGhost1, ghostX, ghostY, 100, 100)); 
         }
         if (gameArea.frames % 150 === 0) { 
-            ghostsArr.push(new gameElement(ghostImg2, ghost2X, ghostY, 120, 120)); 
+            ghostsArr.push(new gameElement(hellGhost2, ghost2X, ghostY, 120, 120)); 
         }        
     }
     for (let i = 0; i < ghostsArr.length; i++){ 
