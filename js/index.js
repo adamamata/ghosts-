@@ -140,10 +140,10 @@ function ghosts(){
             ghostsArr.push(new gameElement(ghostImg2, ghost2X, ghostY, 120, 120)); 
         }        
     } else {
-        if (gameArea.frames % 50 === 0){ 
+        if (gameArea.frames % 35 === 0){ 
             ghostsArr.push(new gameElement(hellGhost1, ghostX, ghostY, 100, 100)); 
         }
-        if (gameArea.frames % 150 === 0) { 
+        if (gameArea.frames % 100 === 0) { 
             ghostsArr.push(new gameElement(hellGhost1, ghost2X, ghostY, 120, 120)); 
         }        
     }
