@@ -98,7 +98,7 @@ let speed = 20; //variable for player speed
 const powerUps = []; //empty array for powerups
 function powerUp(){
     const ctx = gameArea.context;
-    if (gameArea.frames % 500 === 0 && speed < 50){
+    if (gameArea.frames % 500 === 0 && speed <= 50){
         powerUps.push(new gameElement (plusSpeed, powerUpPos, -100, 50, 50));
     }
     for (let i = 0; i < powerUps.length; i++){
