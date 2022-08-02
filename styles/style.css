@@ -112,6 +112,7 @@ canvas {
 
 #game-over-restart{
     margin: 50px;
-    height: 5vh;
+    height: 10vh;
     width: 20vw;
+    border: none;
 }

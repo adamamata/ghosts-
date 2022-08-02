@@ -4,14 +4,13 @@ window.onload = () => {
         gameArea.start();
     }
     gameOverRestart.onclick = () => {
-        gameArea.frames = 0;
-        gameArea.score = 0;
-        gameArea.lives = 3;
-        gameArea.start();
-        clearGhosts();
+        splashScreen.style.display = 'flex';
+        gameBoard.style.display = 'none';
+        endScreen.style.display = 'none';
+        gameArea.restart();
+        window.location.reload();
     }
     restartButton.onclick = () => {
         gameArea.restart();
-        clearGhosts();
     }
 }

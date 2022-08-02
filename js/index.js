@@ -36,7 +36,6 @@ const gameArea = {
         } else {
             this.context.drawImage(hellBackground, 0, 0, this.canvas.width, this.canvas.height);
         }
-       
     },
     restart: function(){
         this.frames = 0;
@@ -49,7 +48,7 @@ const gameArea = {
 function updateGame(){
     gameArea.clear();
     animateClouds();
-    player1.updatePos();
+    player1.updatePos();    
     ghosts();
     keepScore();
     lives();
