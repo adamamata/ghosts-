@@ -27,6 +27,9 @@ const gameArea = {
         clearInterval(this.interval);
         gameBoard.style.display = 'none';
         endScreen.style.display = 'flex';
+        soundArr[2].pause();
+        soundArr[4].volume = 0.2;
+        soundArr[4].play();
         scoreText.innerText = `Score: ${this.score}`;
     },
     clear: function(){ //Clears the game area and draws the background 
@@ -108,6 +111,8 @@ function powerUp(){
         if (player1.checkIfNear(powerUps[i])){
             speed += 5;
             powerUps.splice([i], 1);
+            soundArr[3].volume = 0.2;
+            soundArr[3].play();
         }
     }
 }
@@ -148,8 +153,8 @@ function ghosts(){
         ghostX = Math.floor(Math.random() * 900);
         document.addEventListener('keypress', (e) => { //deleting ghostsArr[i] with spacebar 
             if (player1.checkIfNear(ghostsArr[i]) && e.keyCode === 32){ //if player is near the ghost and spacebar is pressed
-                ghostsArr.splice([i], 1);
                 gameArea.score++;
+                ghostsArr.splice([i], 1);
             }
         });
         if (ghostsArr[i].y > 500){ //if ghost touches leaves frame -> delete from array and -1 from lives 
