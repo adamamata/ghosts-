@@ -52,6 +52,7 @@ function updateGame(){
     ghosts();
     keepScore();
     lives();
+    powerUp();
 }
 
 //lives function 
@@ -91,6 +92,26 @@ function animateClouds(){
     }
 }
 
+//Speed powerup function
+let powerUpPos = Math.floor(Math.random() * 900);
+let speed = 20; //variable for player speed
+const powerUps = []; //empty array for powerups
+function powerUp(){
+    const ctx = gameArea.context;
+    if (gameArea.frames % 500 === 0 && speed < 50){
+        powerUps.push(new gameElement (plusSpeed, powerUpPos, -100, 50, 50));
+    }
+    for (let i = 0; i < powerUps.length; i++){
+        powerUps[i].y += 6; 
+        powerUps[i].updatePos();
+        powerUpPos = Math.floor(Math.random() * 900);
+        if (player1.checkIfNear(powerUps[i])){
+            speed += 5;
+            powerUps.splice([i], 1);
+        }
+    }
+}
+
 //ghosts function
 let ghostX = Math.floor(Math.random() * 1000); //random x coordinate 
 let ghost2X = Math.floor(Math.random() * 1000);
@@ -124,7 +145,7 @@ function ghosts(){
     for (let i = 0; i < ghostsArr.length; i++){ 
         ghostsArr[i].y += 4; //update position of ghost 
         ghostsArr[i].updatePos();
-        ghostX = Math.floor(Math.random() * 1000);
+        ghostX = Math.floor(Math.random() * 900);
         document.addEventListener('keypress', (e) => { //deleting ghostsArr[i] with spacebar 
             if (player1.checkIfNear(ghostsArr[i]) && e.keyCode === 32){ //if player is near the ghost and spacebar is pressed
                 ghostsArr.splice([i], 1);

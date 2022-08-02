@@ -33,3 +33,5 @@ const hellGhost1 = new Image();
 hellGhost1.src = './assets/images/hellGhost1.png';
 const hellGhost2 = new Image();
 hellGhost2.src = './assets/images/hellGhost2.png';
+const plusSpeed = new Image();
+plusSpeed.src = './assets/images/plus_one.png';

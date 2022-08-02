@@ -2,7 +2,7 @@ document.addEventListener('keydown', (e) => { //Event listener to control player
     switch (e.keyCode){
         case 39: //right arrow
             if (player1.x < 900){
-                player1.x += 20;
+                player1.x += speed;
                 player1.img = playerRight;
                 setTimeout(function(){
                     player1.img = playerRight2;
@@ -14,7 +14,7 @@ document.addEventListener('keydown', (e) => { //Event listener to control player
             break;
         case 37: //left arrow
             if (player1.x > -40){
-                player1.x -= 20;
+                player1.x -= speed;
                 player1.img = playerLeft;
                 setTimeout(function(){
                     player1.img = playerLeft2;
