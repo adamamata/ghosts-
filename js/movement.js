@@ -7,9 +7,6 @@ document.addEventListener('keydown', (e) => { //Event listener to control player
                 setTimeout(function(){
                     player1.img = playerRight2;
                 }, 50);
-                setTimeout(function(){
-                    player1.img = playerImg;
-                }, 100);
             }
             break;
         case 37: //left arrow
@@ -27,7 +24,7 @@ document.addEventListener('keydown', (e) => { //Event listener to control player
             player1.img = playerAttack;
             setTimeout(function(){
                 player1.img = playerAttack2;
-            }, 50)
+            }, 100);
             break;
     }
 });
@@ -35,13 +32,19 @@ document.addEventListener('keydown', (e) => { //Event listener to control player
 document.addEventListener('keyup', (e) => { //reseting player1.img after keyup 
     switch (e.keyCode){
         case 39: //right arrow 
+            setTimeout(() => {
             player1.img = playerImg;
+            }, 200);
             break;
         case 37: //left arrow
-            player1.img = playerImg;
+            setTimeout(() => {
+                player1.img = playerImg;
+            }, 200);
             break;
         case 32: //spacebar
-            player1.img = playerImg;
+            setTimeout(() => {
+                player1.img = playerImg;
+            }, 200);
             break;
     }
 });
