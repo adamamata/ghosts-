@@ -140,10 +140,10 @@ function ghosts(){
             ghostsArr.push(new gameElement(ghostImg2, ghost2X, ghostY, 120, 120)); 
         }        
     } else {
-        if (gameArea.frames % 40 === 0){ 
+        if (gameArea.frames % 45 === 0){ 
             ghostsArr.push(new gameElement(hellGhost1, ghostX, ghostY, 100, 100)); 
         }
-        if (gameArea.frames % 100 === 0) { 
+        if (gameArea.frames % 110 === 0) { 
             ghostsArr.push(new gameElement(hellGhost1, ghost2X, ghostY, 120, 120)); 
         }        
     }
@@ -160,6 +160,11 @@ function ghosts(){
         if (ghostsArr[i].y > 500){ //if ghost touches leaves frame -> delete from array and -1 from lives 
             ghostsArr.splice([i], 1);
             gameArea.lives--;
+        }
+        if (gameArea.score >= 20){
+            let randomX = Math.floor(Math.random() * 8);
+            randomX *= Math.round(Math.random()) ? 1 : -1;
+            ghostsArr[i].x += randomX;
         }
     }
 }
