@@ -22,7 +22,6 @@ const gameArea = {
         this.context = this.canvas.getContext('2d'); //initializing canvas 
         gameBoard.insertBefore(this.canvas, gameBoard.childNodes[1]); // appending this.canvas to gameBoard
         this.interval = setInterval(updateGame, 20); //update game area every 20ms 
-        
     },
     stop: function(){ //stops the game 
         clearInterval(this.interval);
