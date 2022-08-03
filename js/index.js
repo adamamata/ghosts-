@@ -1,4 +1,56 @@
-//query selectors 
+//AUDIO 
+const startButton = document.getElementById('start-button');
+const soundArr = document.getElementsByTagName('audio');
+const muteButton = document.getElementById('mute-button');
+startButton.addEventListener('mouseenter', () => {
+    soundArr[0].volume = 0.2;
+    soundArr[0].play();
+});
+startButton.addEventListener('click', () => {
+    soundArr[0].play();
+    soundArr[2].play();
+    soundArr[2].setAttribute('controls', "");
+    soundArr[2].setAttribute('loop', "");
+    soundArr[2].style.display = 'none';
+    soundArr[2].volume = 0.8;
+});
+muteButton.addEventListener('click', () => {
+    if (soundArr[2].paused){
+        muteButton.innerText = 'MUTE MUSIC';
+        soundArr[2].play()
+    } else {
+        muteButton.innerText = 'UNMUTE MUSIC';
+        soundArr[2].pause();
+    }
+});
+
+//WINDOW ONLOAD
+window.onload = () => {   
+    startButton.onclick = () => {
+        gameArea.start();
+    }
+    gameOverRestart.onclick = () => {
+        splashScreen.style.display = 'flex';
+        gameBoard.style.display = 'none';
+        endScreen.style.display = 'none';
+        gameArea.restart();
+        window.location.reload();
+    }
+    restartButton.onclick = () => {
+        gameArea.restart();
+    }
+    changeSkin.onclick = () => {
+        if (defaultSkin === true) {
+            defaultSkin = false;
+            player1.img = playerImgGreen;
+        } else {
+            defaultSkin = true;
+            player1.img = playerImg;
+        }
+    }
+}
+
+//QUERY SELECTORS
 const splashScreen = document.querySelector('#splash-screen');
 const gameBoard = document.querySelector('#game-board');
 const endScreen = document.querySelector('#end-screen');
@@ -7,7 +59,7 @@ const scoreText = document.querySelector('#score');
 const gameOverRestart = document.querySelector('#game-over-restart');
 const changeSkin = document.querySelector('#change-skin');
 
-//gameArea Object
+//GAMEAREA OBJECT
 const gameArea = {
     canvas: document.createElement('canvas'), //creating canvas element
     frames: 0,
@@ -47,7 +99,7 @@ const gameArea = {
     }
 }
 
-//update function
+//UPDATE FUNCTION 
 function updateGame(){
     gameArea.clear();
     animateClouds();
@@ -58,7 +110,7 @@ function updateGame(){
     powerUp();
 }
 
-//game element class 
+//GAME ELEMENT CLASS 
 class gameElement {
     constructor (img, x, y, w, h){
         this.img = img;
@@ -88,10 +140,10 @@ class gameElement {
     }
 }
 
-const player1 = new gameElement(playerImg, 440, 350, 150, 150); //Creating Player1 
+//CREATING PLAYER 1
+const player1 = new gameElement(playerImg, 440, 350, 150, 150); 
 
-//FUNCTIONS 
-//lives function 
+//LIVES FUNCTION 
 function lives(){
     const ctx = gameArea.context;
     if (gameArea.lives === 3){
@@ -105,7 +157,7 @@ function lives(){
     }
 }
 
-//keep score function
+//SCORE FUNCTION 
 function keepScore(){
     const ctx = gameArea.context;
     ctx.font = '18px Arial';
@@ -113,7 +165,7 @@ function keepScore(){
     ctx.fillText(`Score: ${gameArea.score}`, 900, 20);
 }
 
-//animate clouds function 
+//CLOUDS FUNCTION 
 let cloud1X = 1000;
 let cloud1Y = -60;
 let cloud2X = 1500; 
@@ -128,7 +180,7 @@ function animateClouds(){
     }
 }
 
-//Speed powerup function
+//POWERUP FUNCTION
 let powerUpPos = Math.floor(Math.random() * 900);
 let speed = 20; //variable for player speed
 const powerUps = []; //empty array for powerups
@@ -150,7 +202,7 @@ function powerUp(){
     }
 }
 
-//ghosts function
+//GHOST FUNCTION 
 let ghostX = Math.floor(Math.random() * 900); //random x coordinate 
 let ghost2X = Math.floor(Math.random() * 900);
 let ghostY = -100; //y coordinate outside of canvas 
@@ -201,3 +253,88 @@ function ghosts(){
         }
     }
 }
+
+//PLAYER MOVEMENT AND ATTACK
+let defaultSkin = true;
+document.addEventListener('keydown', (e) => { //Event listener to control player
+    switch (e.keyCode){
+        case 39: //right arrow
+            if (player1.x < 900){
+                player1.x += speed;
+                if (defaultSkin){
+                    player1.img = playerRight;
+                    setTimeout(function(){
+                        player1.img = playerRight2;
+                    }, 50);
+                } else {
+                    player1.img = playerRightGreen; 
+                    setTimeout(function(){
+                        player1.img = playerRightGreen2;
+                    }, 50);
+                }
+            }
+            break;
+        case 37: //left arrow
+            if (player1.x > -40){
+                player1.x -= speed;
+                if (defaultSkin){
+                    player1.img = playerLeft;
+                    setTimeout(function(){
+                        player1.img = playerLeft2;
+                    }, 100);
+                } else {
+                    player1.img = playerLeftGreen;
+                    setTimeout(function(){
+                        player1.img = playerLeftGreen2;
+                    }, 100);
+                }
+            }
+            break;
+        case 32:  //spacebar 
+            soundArr[1].volume = 0.2;
+            soundArr[1].play();
+            player1.img = playerAttack;
+            setTimeout(function(){
+                player1.img = playerAttack2;
+            }, 100);
+            break;
+    }
+});
+
+document.addEventListener('keyup', (e) => { //reseting player1.img after keyup 
+    switch (e.keyCode){
+        case 39: //right arrow 
+            if (defaultSkin){
+                setTimeout(() => {
+                    player1.img = playerImg;
+                    }, 200);
+            } else{
+                setTimeout(() => {
+                    player1.img = playerImgGreen;
+                }, 200);
+            }
+            break;
+        case 37: //left arrow
+            if (defaultSkin){
+                setTimeout(() => {
+                    player1.img = playerImg;
+                }, 200);
+            } else {
+                setTimeout(() => {
+                    player1.img = playerImgGreen;
+                }, 200);
+            }
+            break;
+        case 32: //spacebar
+            if (defaultSkin){
+                setTimeout(() => {
+                    player1.img = playerImg;
+                }, 200);
+            } else {
+                setTimeout(() => {
+                    player1.img = playerImgGreen;
+                }, 200);
+            }
+            break;
+    }
+});
