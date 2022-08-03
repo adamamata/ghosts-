@@ -13,4 +13,13 @@ window.onload = () => {
     restartButton.onclick = () => {
         gameArea.restart();
     }
+    changeSkin.onclick = () => {
+        if (defaultSkin === true) {
+            defaultSkin = false;
+            player1.img = playerImgGreen;
+        } else {
+            defaultSkin = true;
+            player1.img = playerImg;
+        }
+    }
 }
