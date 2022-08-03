@@ -58,6 +58,39 @@ function updateGame(){
     powerUp();
 }
 
+//game element class 
+class gameElement {
+    constructor (img, x, y, w, h){
+        this.img = img;
+        this.x = x;
+        this.y = y;
+        this.w = w;
+        this.h = h;
+    }
+    updatePos(){
+        gameArea.context.drawImage(this.img, this.x, this.y, this.w, this.h); //updating position method 
+    }
+    //Methods to return current position of game element 
+    left(){
+        return this.x;
+    }
+    right(){
+        return this.x + this.w;
+    }
+    top(){
+        return this.y;
+    }
+    bottom(){
+        return this.y + this.h;
+    }
+    checkIfNear(element){ //logic to check if player is near an element (ghost)
+        return (this.top() <= element.bottom() && this.bottom() >= element.top() && this.left() <= element.right() && this.right() >= element.left());
+    }
+}
+
+const player1 = new gameElement(playerImg, 440, 350, 150, 150); //Creating Player1 
+
+//FUNCTIONS 
 //lives function 
 function lives(){
     const ctx = gameArea.context;
@@ -168,35 +201,3 @@ function ghosts(){
         }
     }
 }
-
-//game element class 
-class gameElement {
-    constructor (img, x, y, w, h){
-        this.img = img;
-        this.x = x;
-        this.y = y;
-        this.w = w;
-        this.h = h;
-    }
-    updatePos(){
-        gameArea.context.drawImage(this.img, this.x, this.y, this.w, this.h); //updating position method 
-    }
-    //Methods to return current position of game element 
-    left(){
-        return this.x;
-    }
-    right(){
-        return this.x + this.w;
-    }
-    top(){
-        return this.y;
-    }
-    bottom(){
-        return this.y + this.h;
-    }
-    checkIfNear(element){ //logic to check if player is near an element (ghost)
-        return (this.top() <= element.bottom() && this.bottom() >= element.top() && this.left() <= element.right() && this.right() >= element.left());
-    }
-}
-
-const player1 = new gameElement(playerImg, 440, 350, 150, 150); //Creating Player1 
