@@ -12,7 +12,7 @@ startButton.addEventListener('click', () => {
     soundArr[2].setAttribute('controls', "");
     soundArr[2].setAttribute('loop', "");
     soundArr[2].style.display = 'none';
-    soundArr[2].volume = 0.8;
+    soundArr[2].volume = 0.2;
 });
 muteButton.addEventListener('click', () => {
     if (soundArr[2].paused){
