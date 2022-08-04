@@ -350,4 +350,3 @@ document.addEventListener('keyup', (e) => { //reseting player1.img after keyup
             break;
     }
 });
-
