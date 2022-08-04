@@ -34,7 +34,6 @@ window.onload = () => {
         gameBoard.style.display = 'none';
         endScreen.style.display = 'none';
         gameArea.restart();
-        window.location.reload();
     }
     restartButton.onclick = () => {
         gameArea.restart();
@@ -58,6 +57,7 @@ const restartButton = document.querySelector('#restart-button');
 const scoreText = document.querySelector('#score');
 const gameOverRestart = document.querySelector('#game-over-restart');
 const changeSkin = document.querySelector('#change-skin');
+const highScoreText = document.querySelector('#high-score');
 
 //GAMEAREA OBJECT
 const gameArea = {
@@ -66,6 +66,7 @@ const gameArea = {
     score: 0,
     lives: 3,
     start: function(){
+        localStorage.setItem('highscore', '0');
         splashScreen.style.display = 'none';
         gameBoard.style.display = 'flex';
         endScreen.style.display = 'none';
@@ -96,6 +97,7 @@ const gameArea = {
         this.frames = 0;
         this.score = 0;
         this.lives = 3;
+        ghostsArr.splice(0, ghostsArr.length);
     }
 }
 
@@ -108,6 +110,7 @@ function updateGame(){
     keepScore();
     lives();
     powerUp();
+    setHighScore();
 }
 
 //GAME ELEMENT CLASS 
@@ -142,6 +145,15 @@ class gameElement {
 
 //CREATING PLAYER 1
 const player1 = new gameElement(playerImg, 440, 350, 150, 150); 
+
+//HIGHSCORE FUNCTION 
+let highScore = Number(localStorage.getItem('highscore'));
+function setHighScore(){
+    if (gameArea.score > highScore){
+        localStorage.setItem('highscore', gameArea.score.toString());
+        highScoreText.innerText = `Best: ${localStorage.getItem('highscore')}`;
+    }
+}
 
 //LIVES FUNCTION 
 function lives(){
@@ -338,3 +350,4 @@ document.addEventListener('keyup', (e) => { //reseting player1.img after keyup
             break;
     }
 });
+

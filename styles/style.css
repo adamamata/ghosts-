@@ -110,6 +110,11 @@ canvas {
     font-size: 50px;
 }
 
+#high-score{
+    font-size: 30px;
+    color: red;
+}
+
 #game-over-restart{
     margin: 50px;
     height: 10vh;
