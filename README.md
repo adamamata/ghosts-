@@ -15,6 +15,7 @@ Ghosts! is a game where a player has to collect incoming ghosts (that fall from 
 1. Add scaling difficulty.
 2. Add powerups.
 3. Add option to change character. 
+4. Add highscores. 
 
 # Data structure
 1. index.js
