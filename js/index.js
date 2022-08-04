@@ -97,6 +97,7 @@ const gameArea = {
         this.score = 0;
         this.lives = 3;
         ghostsArr.splice(0, ghostsArr.length);
+        speed = 20; 
     }
 }
 
@@ -236,13 +237,20 @@ function ghosts(){
         if (gameArea.frames % 200 === 0) { 
             ghostsArr.push(new gameElement(ghostImg2, ghost2X, ghostY, 120, 120)); 
         }        
-    } else {
+    } else if (gameArea.score < 30){
         if (gameArea.frames % 40 === 0){ 
             ghostsArr.push(new gameElement(hellGhost1, ghostX, ghostY, 100, 100)); 
         }
         if (gameArea.frames % 100 === 0) { 
             ghostsArr.push(new gameElement(hellGhost1, ghost2X, ghostY, 120, 120)); 
         }        
+    } else {
+        if (gameArea.frames % 25 === 0){ 
+            ghostsArr.push(new gameElement(ghostImg, ghostX, ghostY, 100, 100)); 
+        }
+        if (gameArea.frames % 90 === 0) { 
+            ghostsArr.push(new gameElement(ghostImg2, ghost2X, ghostY, 120, 120)); 
+        }  
     }
     for (let i = 0; i < ghostsArr.length; i++){ 
         ghostsArr[i].y += 4; //update position of ghost 
