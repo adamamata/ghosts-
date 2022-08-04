@@ -66,7 +66,6 @@ const gameArea = {
     score: 0,
     lives: 3,
     start: function(){
-        localStorage.setItem('highscore', '0');
         splashScreen.style.display = 'none';
         gameBoard.style.display = 'flex';
         endScreen.style.display = 'none';
@@ -147,8 +146,9 @@ class gameElement {
 const player1 = new gameElement(playerImg, 440, 350, 150, 150); 
 
 //HIGHSCORE FUNCTION 
-let highScore = Number(localStorage.getItem('highscore'));
+localStorage.setItem('highscore', '0');
 function setHighScore(){
+    let highScore = Number(localStorage.getItem('highscore'));
     if (gameArea.score > highScore){
         localStorage.setItem('highscore', gameArea.score.toString());
         highScoreText.innerText = `Best: ${localStorage.getItem('highscore')}`;
