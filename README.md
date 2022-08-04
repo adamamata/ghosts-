@@ -28,3 +28,5 @@ Ghosts! is a game where a player has to collect incoming ghosts (that fall from 
 
 # Links
 Github repo = https://github.com/adamamata/im_not_hungry
+Presentation = https://docs.google.com/presentation/d/13sg2YCqIk-tEggMi_R6tpBiiXnmcagaNwTOdORM4FI8/edit?usp=sharing
+Deployment link = https://adamamata.github.io/ghosts-/
